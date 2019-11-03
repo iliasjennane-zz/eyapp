@@ -8,6 +8,6 @@ spec:
   type:  LoadBalancer
   ports:
   - name:  tcp
-    port:  8080
+    port:  {{ .Values.servicePorts.port }}
     targetPort:  80
 
