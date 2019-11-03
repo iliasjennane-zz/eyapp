@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  eyweb
+spec:
+  selector:
+    app: eyweb
+  type:  LoadBalancer
+  ports:
+  - name:  tcp
+    port:  8080
+    targetPort:  80
+

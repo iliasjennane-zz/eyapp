@@ -1,0 +1,12 @@
+version: '3'
+services: 
+  ui:
+    image: eyweb:1.2
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+  api:
+    image: eyapi:1.2
+    ports: 
+      - "7070:80" 

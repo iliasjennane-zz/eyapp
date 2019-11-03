@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: eyapi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: eyapi
+  template:
+    metadata:
+      labels:
+        app: eyapi
+    spec:
+      containers:
+      - name: eyapi
+        image: eyapi:1.2
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 80
