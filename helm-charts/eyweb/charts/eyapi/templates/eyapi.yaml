@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Release.Name }}-{{ .Chart.Name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: {{ .Release.Name }}-{{ .Chart.Name }}
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}-{{ .Chart.Name }}
-        image: eyapi:1.4
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy: IfNotPresent
         resources:
           limits:

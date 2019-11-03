@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}-{{ .Chart.Name }}
-        image: eyweb:1.4
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy: IfNotPresent
         resources:
           limits:

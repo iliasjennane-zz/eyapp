@@ -1,3 +1,6 @@
 config:
   apiURL: "eyapi"
 replicaCount: 1
+image:
+  repository: eyweb
+  tag: "1.5"
