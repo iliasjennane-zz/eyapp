@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  eyapi
+spec:
+  selector:
+    app: eyapi
+  type:  ClusterIP 
+  ports:
+  - name:  tcp
+    port:  80
+    targetPort:  80

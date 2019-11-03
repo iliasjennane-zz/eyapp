@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: eyweb
+  labels:
+    app: eyweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eyweb
+  template:
+    metadata:
+      labels:
+        app: eyweb
+    spec:
+      containers:
+      - name: eyweb
+        image: eyweb:1.4
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /ready.html
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 2
+          periodSeconds: 5
+          failureThreshold: 1
+        env:
+          - name:  apiURL
+            valueFrom:
+              configMapKeyRef:
+                name:  eyweb-config
+                key:  apiURL
