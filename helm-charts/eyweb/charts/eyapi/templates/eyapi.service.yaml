@@ -1,10 +1,10 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name:  eyapi
+  name:  {{ .Release.Name }}-{{ .Chart.Name }}
 spec:
   selector:
-    app: eyapi
+    app: {{ .Release.Name }}-{{ .Chart.Name }}
   type:  ClusterIP 
   ports:
   - name:  tcp

@@ -1,10 +1,10 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name:  eyweb
+  name:  {{ .Release.Name }}-{{ .Chart.Name }}
 spec:
   selector:
-    app: eyweb
+    app: {{ .Release.Name }}-{{ .Chart.Name }}
   type:  LoadBalancer
   ports:
   - name:  tcp

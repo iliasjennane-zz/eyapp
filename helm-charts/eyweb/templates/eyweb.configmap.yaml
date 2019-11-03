@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: eyweb-config
+  name: {{ .Release.Name }}-{{ .Chart.Name }}-config
   labels:
     app: eyweb
 data:
-  apiURL: eyapi
+  apiURL: {{ .Release.Name }}-{{ .Values.config.apiURL }}

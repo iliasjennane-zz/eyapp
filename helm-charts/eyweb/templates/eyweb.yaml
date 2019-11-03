@@ -1,21 +1,21 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: eyweb
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
   labels:
-    app: eyweb
+    app: {{ .Release.Name }}-{{ .Chart.Name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: eyweb
+      app: {{ .Release.Name }}-{{ .Chart.Name }}
   template:
     metadata:
       labels:
-        app: eyweb
+        app: {{ .Release.Name }}-{{ .Chart.Name }}
     spec:
       containers:
-      - name: eyweb
+      - name: {{ .Release.Name }}-{{ .Chart.Name }}
         image: eyweb:1.4
         imagePullPolicy: IfNotPresent
         resources:
@@ -36,5 +36,5 @@ spec:
           - name:  apiURL
             valueFrom:
               configMapKeyRef:
-                name:  eyweb-config
+                name:  {{ .Release.Name }}-{{ .Chart.Name }}-config
                 key:  apiURL
