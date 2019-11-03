@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: eyapi
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: eyapi
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: eyapi
-        image: eyapi:1.2
+        image: eyapi:1.4
         imagePullPolicy: IfNotPresent
         resources:
           limits:
