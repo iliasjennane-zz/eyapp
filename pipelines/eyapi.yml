@@ -7,6 +7,7 @@ trigger:
     include:
     - master
     - releases/*
+    - topics/*
   paths:
     include:
     - eyapi
@@ -19,7 +20,7 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '70993766-1148-48c0-851b-e83b8c7bebc6'
-  imageRepository: 'iliasjennaneeyapp'
+  imageRepository: 'eyapi'
   containerRegistry: 'eyappsacr.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/eyapi/Dockerfile'
   tag: '1.$(Build.BuildId)'
