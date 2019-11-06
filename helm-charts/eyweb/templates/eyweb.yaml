@@ -24,14 +24,6 @@ spec:
             cpu: "500m"
         ports:
           - containerPort: 80
-        livenessProbe:
-          httpGet:
-            path: /ready.html
-            port: 80
-          initialDelaySeconds: 10
-          timeoutSeconds: 2
-          periodSeconds: 5
-          failureThreshold: 1
         env:
           - name:  apiURL
             valueFrom:
