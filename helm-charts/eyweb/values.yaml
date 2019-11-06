@@ -5,7 +5,7 @@ servicePorts:
   port: "80"
 image:
   repository: eyappsacr.azurecr.io/eyweb
-  tag: "1.3"
+  tag: "1.258"
 mssql:
   enabled: true
   

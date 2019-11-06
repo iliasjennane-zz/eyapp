@@ -1,4 +1,4 @@
 replicaCount: 1
 image:
   repository: eyappsacr.azurecr.io/eyapi
-  tag: "1.3"
+  tag: "1.257"
