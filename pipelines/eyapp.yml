@@ -64,6 +64,12 @@ stages:
         command: 'package'
         chartPath: '**/helm-charts/eyweb'
         save: false
+    - task: CopyFiles@2
+      displayName: Copy deployment ps files
+      inputs:
+        SourceFolder: '$(Build.SourcesDirectory)/pipelines'
+        Contents: '*.ps1'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
     - task: PublishBuildArtifacts@1
       displayName: publish the helm chart as a build pipeline artifact
       inputs:
