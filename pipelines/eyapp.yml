@@ -67,7 +67,7 @@ stages:
     - task: CopyFiles@2
       displayName: copy deployments powershell files
       inputs:
-        SourceFolder: '**/pipelines'
+        SourceFolder: '$(Build.SourcesDirectory)/pipelines'
         Contents: '*.ps1'
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
         flattenFolders: true
