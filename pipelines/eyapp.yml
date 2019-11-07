@@ -54,3 +54,19 @@ stages:
         tags: |
           $(tag)
           latest
+    - task: HelmInstaller@1
+      displayName: install latest helm client side tool
+      inputs:
+        helmVersionToInstall: 'latest'
+    - task: HelmDeploy@0
+      displayName: package the eyapp as a helm chart
+      inputs:
+        command: 'package'
+        chartPath: '**/helm-charts/eyweb'
+        save: false
+    - task: PublishBuildArtifacts@1
+      displayName: publish the helm chart as a build pipeline artifact
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
