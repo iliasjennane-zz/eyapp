@@ -8,11 +8,6 @@ trigger:
     - master
     - releases/*
     - topics/*
-  paths:
-    include:
-    - eyapi
-    exclude:
-    - eyweb
 
 resources:
 - repo: self
@@ -21,7 +16,7 @@ variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '70993766-1148-48c0-851b-e83b8c7bebc6'
   eyapiImageRepository: 'eyapi'
-  eywebImageRepository: 'eywev'
+  eywebImageRepository: 'eyweb'
   containerRegistry: 'eyappsacr.azurecr.io'
   eyapiDockerfilePath: '$(Build.SourcesDirectory)/eyapi/Dockerfile'
   eywebDockerfilePath: '$(Build.SourcesDirectory)/eyweb/Dockerfile'
@@ -52,10 +47,10 @@ stages:
     - task: Docker@2
       displayName: Build and push the eyweb image
       inputs:
-        command: 'buildAndPush'
+        command: buildAndPush
         repository: $(eywebImageRepository)
-        containerRegistry: $(dockerRegistryServiceConnection)
         Dockerfile: $(eywebDockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
           latest
