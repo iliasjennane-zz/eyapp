@@ -20,9 +20,11 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '70993766-1148-48c0-851b-e83b8c7bebc6'
-  imageRepository: 'eyapi'
+  eyapiImageRepository: 'eyapi'
+  eywebImageRepository: 'eywev'
   containerRegistry: 'eyappsacr.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/eyapi/Dockerfile'
+  eyapiDockerfilePath: '$(Build.SourcesDirectory)/eyapi/Dockerfile'
+  eywebDockerfilePath: '$(Build.SourcesDirectory)/eyweb/Dockerfile'
   tag: '1.$(Build.BuildId)'
   
   # Agent VM image name
@@ -41,9 +43,19 @@ stages:
       displayName: Build and push the eyapi image
       inputs:
         command: buildAndPush
-        repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
+        repository: $(eyapiImageRepository)
+        dockerfile: $(eyapiDockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
+          latest
+    - task: Docker@2
+      displayName: Build and push the eyweb image
+      inputs:
+        command: 'buildAndPush'
+        repository: $(eywebImageRepository)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        Dockerfile: $(eywebDockerfilePath)
         tags: |
           $(tag)
           latest
