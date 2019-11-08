@@ -9,4 +9,5 @@ Param(
 )
 #helm init --upgrade
 $helmPackageName = $(Get-ChildItem -Path *.tgz -Recurse -Force).Name 
-helm upgrade  $helmReleaseName $helmPackagePath/$helmPackageName --set image.tag=$eywebImageTag --set eyapi.image.tag=$eyapiImageTag  --namespace $aksNamespace --install --force 
+Write-Host "Deploying package $helmPackageName" -ForegroundColor White
+helm upgrade  $helmReleaseName $helmPackageFolderPath/$helmPackageName --set image.tag=$eywebImageTag --set eyapi.image.tag=$eyapiImageTag  --namespace $aksNamespace --install --force 
