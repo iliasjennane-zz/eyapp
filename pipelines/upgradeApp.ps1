@@ -6,4 +6,5 @@ Param(
     [Parameter(Mandatory=$false)][string]$helmPackagePath,
     [Parameter(Mandatory=$false)][string]$helmReleaseName
 )
+#helm init --upgrade
 helm upgrade  $helmReleaseName $helmPackagePath --set image.tag=$eywebImageTag --set eyapi.image.tag=$eyapiImageTag  --namespace $aksNamespace --install --force 
