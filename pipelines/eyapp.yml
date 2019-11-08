@@ -68,7 +68,9 @@ stages:
       displayName: Copy deployment ps files
       inputs:
         SourceFolder: '$(Build.SourcesDirectory)/pipelines'
-        Contents: '*.ps1'
+        Contents: |
+          *.ps1
+          *.yaml
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
     - task: PublishBuildArtifacts@1
       displayName: publish the helm chart as a build pipeline artifact
