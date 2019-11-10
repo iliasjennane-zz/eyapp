@@ -1,5 +1,5 @@
 apiVersion: v1
-appVersion: "1.258"
-description: "A helm chart for ey web 1.258"
+appVersion: "1.0"
+description: "A helm chart for ey web"
 version: 0.1.1
 name: eyweb
